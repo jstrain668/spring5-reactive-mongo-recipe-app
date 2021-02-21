@@ -2,6 +2,8 @@ package guru.springframework.services;
 
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Recipe;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.Set;
 
@@ -9,14 +11,13 @@ import java.util.Set;
  * Created by jt on 6/13/17.
  */
 public interface RecipeService {
+    Flux<Recipe> getRecipes();
 
-    Set<Recipe> getRecipes();
+    Mono<Recipe> findById(String id);
 
-    Recipe findById(String id);
+    Mono<RecipeCommand> findCommandById(String id);
 
-    RecipeCommand findCommandById(String id);
+    Mono<RecipeCommand> saveRecipeCommand(RecipeCommand command);
 
-    RecipeCommand saveRecipeCommand(RecipeCommand command);
-
-    void deleteById(String idToDelete);
+    Mono<Void> deleteById(String idToDelete);
 }
